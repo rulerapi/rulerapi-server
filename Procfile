@@ -1,1 +1,1 @@
-web: gunicorn openapi_server:app
+web: python3 -m openapi_server

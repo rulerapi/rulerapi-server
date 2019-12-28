@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+
 import connexion
 
 from openapi_server import encoder
@@ -11,7 +13,7 @@ def main():
     app.add_api('openapi.yaml',
                 arguments={'title': 'Ruler API'},
                 pythonic_params=True)
-    app.run(port=8080)
+    app.run(port=os.getenv("PORT"))
 
 
 if __name__ == '__main__':
