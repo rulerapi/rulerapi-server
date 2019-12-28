@@ -1,0 +1,58 @@
+openapi: 3.0.1
+info:
+  description: Ruler API is a flexible API for rules. Originally designed for FIRST
+    Robotics Competition, it is flexible in nature to allow for any program to use
+    it.
+  title: Ruler API
+  version: 1.0.0
+servers:
+- url: https://frcrules.herokuapp.com
+paths:
+  /rule/{rule_id}:
+    get:
+      description: Returns the content of a rule.
+      operationId: get_rule
+      parameters:
+      - description: Rule ID to get
+        explode: false
+        in: path
+        name: rule_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                example: This is a rule.
+                type: string
+          description: Successful response
+        304:
+          content: {}
+          description: Not Modified - Use Local Cached Value
+      tags:
+      - Get Rule
+      x-openapi-router-controller: openapi_server.controllers.get_rule_controller
+  /rules:
+    get:
+      description: Returns the list of rules.
+      operationId: get_rules
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response
+        304:
+          content: {}
+          description: Not Modified - Use Local Cached Value
+      tags:
+      - Get Rule List
+      x-openapi-router-controller: openapi_server.controllers.get_rule_list_controller
+components:
+  schemas: {}
