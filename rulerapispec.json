@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ruler API",
+    "description": "Ruler API is a flexible API for rules. Originally designed for FIRST Robotics Competition, it is flexible in nature to allow for any program to use it.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://frcrules.herokuapp.com"
+    }
+  ],
+  "paths": {
+    "/rule/{rule_id}": {
+      "get": {
+        "tags": [
+          "Get Rule"
+        ],
+        "description": "Returns the content of a rule.",
+        "operationId": "getRule",
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "description": "Rule ID to get",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "This is a rule."
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Use Local Cached Value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/rules": {
+      "get": {
+        "tags": [
+          "Get Rule List"
+        ],
+        "description": "Returns the list of rules.",
+        "operationId": "getRules",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Use Local Cached Value",
+            "content": {}
+          }
+        }
+      }
+    }
+  }
+}
