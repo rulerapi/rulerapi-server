@@ -5,7 +5,7 @@ install:
 - pip install -r requirements.txt
 - pip install -r test-requirements.txt
 script: nosetests
-before_deploy: npm install -g openapi-generator && openapi-generator generate
+before_deploy: npm install -g openapi-generator; openapi-generator generate
   -i rulerapispec.json -g html -o htmldocs/
 deploy:
   provider: pages
