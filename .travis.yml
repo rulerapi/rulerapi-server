@@ -1,10 +1,17 @@
-# ref: https://docs.travis-ci.com/user/languages/python
 language: python
 python:
-  - "3.7.6"
-# command to install dependencies
+- 3.7.6
 install:
-  - pip install -r requirements.txt
-  - pip install -r test-requirements.txt
-# command to run tests
+- pip install -r requirements.txt
+- pip install -r test-requirements.txt
 script: nosetests
+before_deploy: npm install -g openapi-generator-cli && openapi-generator generate
+  -i rulerapispec.json -g html -o htmldocs/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token:
+    secure: lZQF7viLcx12YPbylytpHivsxy4X5YmJFx3ffAKsahL92Uh1KHQevaUUDLYu9TipnrJ+nvXlTFeta0OUky+9ROiNKY56qQ1wU0YcXp2W287zz4BXjrTQ9DwcwIxhdtifkjAa9a9ncniVeddp1CsfAyKoppN8cp7xLIcCGsWrt71CQTs9T8LxlEMka31Z4jY6ID22rZR46cECkc6Wz353vviJ99K8JHkiM9yXRF8JuVFEZ/EfxwxuWufys7dF7q9xODeJhKeIWOvx0DQYyaiuu5IiZ9hJHUOx6P7oN0haJfotE78cbl7ps/aBBqOwJ1NoOFJGMlrSr3kXBChZnSL4GAv1Qh5VTamPRHBJYqeGxFlz6EnUEIlO0fu+8W0dGChRYC22CfM0fp2WWnlWsrW5TZcEg8CJ3h2VtJedAFuJ8OeO//ADwH9T2C559WJNiIOorKBU/O/00HRPoRnueS0UlqWG99Fta5EQSppHVgm5tIv8a7lwdreHQw1+1KmaQ0RhcW18nd/TUGlpWm5/5d9SwGn4v3G4lL+WROuEIZaBTykXyam94i9cryJyBis/JO2jbkyKsofe6FF42mt5azp66BOjHVHsRFLHT6bnfV0z+pLaqTuqHfYATLUkCxomYZut0b5mEIsmZQtXWizu9+mtC0tedrc0WgiEvJfYG77TB6g=
+  local_dir: htmldocs
+  on:
+    branch: master
