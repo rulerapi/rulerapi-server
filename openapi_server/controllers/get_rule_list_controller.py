@@ -1,7 +1,4 @@
-import connexion
-import six
-
-from openapi_server import util
+from openapi_server import db
 
 
 def get_rules():  # noqa: E501
@@ -12,4 +9,9 @@ def get_rules():  # noqa: E501
 
     :rtype: List[str]
     """
-    return 'do some magic!'
+    with db.Session() as session:
+        query_result = session.query(db.RulesDB).all()
+    rules = []
+    for result in query_result:
+        rules.append(result.rule_id)
+    return rules
