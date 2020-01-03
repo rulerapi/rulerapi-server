@@ -1,7 +1,4 @@
-import connexion
-import six
-
-from openapi_server import util
+from openapi_server import db
 
 
 def get_rule(rule_id):  # noqa: E501
@@ -14,4 +11,9 @@ def get_rule(rule_id):  # noqa: E501
 
     :rtype: str
     """
-    return 'do some magic!'
+    with db.Session() as session:
+        query_result = session.query(db.RulesDB).filter_by(rule_id=rule_id).one_or_none()
+        if query_result is not None:
+            return query_result
+        else:
+            return f"Rule {rule_id} does not exist!"
