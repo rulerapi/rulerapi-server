@@ -1,10 +1,8 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-import unittest
 
-from flask import json
-from six import BytesIO
+import unittest
 
 from openapi_server.test import BaseTestCase
 
@@ -21,7 +19,7 @@ class TestGetRuleController(BaseTestCase):
             'Accept': 'application/json',
         }
         response = self.client.open(
-            '/rule/{rule_id}'.format(rule_id='rule_id_example'),
+            '/rule/{rule_id}'.format(rule_id='Test'),
             method='GET',
             headers=headers)
         self.assert200(response,
