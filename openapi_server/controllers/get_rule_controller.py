@@ -14,6 +14,6 @@ def get_rule(rule_id):  # noqa: E501
     with db.Session() as session:
         query_result = session.query(db.RulesDB).filter_by(rule_id=rule_id).one_or_none()
         if query_result is not None:
-            return query_result
+            return query_result.rule_text
         else:
             return f"Rule {rule_id} does not exist!"
