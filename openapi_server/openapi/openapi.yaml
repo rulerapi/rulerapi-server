@@ -27,7 +27,7 @@ paths:
         required: true
         name: ruleset
         schema:
-          - type: string
+          type: string
         style: simple
       responses:
         200:
@@ -54,7 +54,7 @@ paths:
           required: true
           name: ruleset
           schema:
-            - type: string
+            type: string
           style: simple
       responses:
         200:
