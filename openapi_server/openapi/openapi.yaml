@@ -8,7 +8,7 @@ info:
 servers:
 - url: https://frcrules.herokuapp.com
 paths:
-  /rule/{rule_id}:
+  /rule/{ruleset}/{rule_id}:
     get:
       description: Returns the content of a rule.
       operationId: get_rule
@@ -20,6 +20,14 @@ paths:
         required: true
         schema:
           type: string
+        style: simple
+      - description: The ruleset to look up the rule from.
+        explode: false
+        in: path
+        required: true
+        name: ruleset
+        schema:
+          - type: string
         style: simple
       responses:
         200:
@@ -35,10 +43,19 @@ paths:
       tags:
       - Get Rule
       x-openapi-router-controller: openapi_server.controllers.get_rule_controller
-  /rules:
+  /rules/{ruleset}:
     get:
       description: Returns the list of rules.
       operationId: get_rules
+      parameters:
+        - description: The ruleset to look up the rule from.
+          explode: false
+          in: path
+          required: true
+          name: ruleset
+          schema:
+            - type: string
+          style: simple
       responses:
         200:
           content:

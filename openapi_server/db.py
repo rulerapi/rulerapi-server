@@ -36,6 +36,7 @@ class CtxSession(Session):
 class RulesDB(DatabaseObject):
     __tablename__ = 'rules'
     rule_id = Column(String, primary_key=True)
+    ruleset = Column(String, primary_key=True)
     rule_text = Column(String)
 
 
