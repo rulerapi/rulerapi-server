@@ -1,7 +1,7 @@
 language: python
 env: DATABASE_URL=sqlite:///test.db
 python:
-- 3.7.6
+- 3.8.2
 install:
 - pip install -r requirements.txt
 - pip install -r test-requirements.txt
